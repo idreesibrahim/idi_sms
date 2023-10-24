@@ -48,7 +48,37 @@ result = sms_sender.send_sms(phone_no, sms_text, sms_language)
 puts result
 
 ```
+## Response
+SUCCESS Response:
+```ruby
 
+  {
+    "status": "success",
+    "message": "sent to SMS Provider for broadcast."
+  }
+```
+Error Response:
+```ruby
+  {
+    "status": "error",
+    "message": "Phone Number is Missing"
+  }
+
+  {
+    "status": "error",
+    "message": "SMS text is missing"
+  }
+
+  {
+    "status": "error",
+    "message": "Phone Number should contains only digits & length equals to 11."
+  }
+
+  {
+    "status": false,
+    "error": "Invalid API Key."
+  }
+```
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
