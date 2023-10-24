@@ -1,31 +1,67 @@
-# IdiSms
+# idi_sms Gem
 
-TODO: Delete this and the text below, and describe your gem
+## Overview
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/idi_sms`. To experiment with that code, run `bin/console` for an interactive prompt.
+The `idi_sms` gem is a Ruby library that simplifies the process of sending SMS messages using the 8070 short code SMS-Gateway API. This gem is specifically designed for integration with the PITB Dengue Tracking System, allowing you to send SMS messages efficiently and seamlessly.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+To use the `idi_sms` gem in your project, follow these steps:
 
-Install the gem and add to the application's Gemfile by executing:
+1. Add the gem to your project's Gemfile:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+   ```ruby
+   gem 'idi_sms'
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Run bundle install to install the gem and its dependencies.
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+2. Run Command to generate yml file for setting key:
+   
+   ```ruby
+   $ rails generate idi_sms:config
 
+it will create a file on config/idi_sms.yml
+
+3. Set your api_url and secret_key as per your envionrment
+      1. api_url: https://gatewayurl.sms
+      2. secret_key: your_secret_key
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+Require the gem in your Ruby code:
+require 'idi_sms'
 
-## Development
+sms_sender = IdiSms::SmsSender.new
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Customize your SMS details, including the phone number, SMS text, and SMS language:
+
+phone_no = 'xxxxxxxxxx'(allow number only)
+sms_text = 'This gem created by idi'
+sms_language = 'english'
+
+
+Send an SMS using the send_sms method and handle the response:
+
+
+result = sms_sender.send_sms(phone_no, sms_text, sms_language)
+puts result
+
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/idi_sms.
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+The idi_sms gem is released under the MIT License. See the LICENSE file for details.
+
+Contact
+If you have any questions or encounter issues with the idi_sms gem, feel free to contact idrees.ibrahim009@gmail.com.
+
+
+In the provided text, I added instructions for generating an API key and setting environment variables. Please customize it further with the actual URLs, environment variable names, and any additional details specific to your gem.

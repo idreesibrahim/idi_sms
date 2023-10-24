@@ -1,7 +1,7 @@
 development:
-  api_url: https://smsgateway.pitb.gov.pk/api/send_sms
+  api_url: 
   secret_key: your_secret_key
 
 production:
-  api_url: https://smsgateway.pitb.gov.pk/api/send_sms
+  api_url: 
   secret_key: your_secret_key
