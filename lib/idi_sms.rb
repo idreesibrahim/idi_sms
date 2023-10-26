@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'net/http'
-require 'json'
+require 'uri'
 require 'yaml'
 
 module IdiSms
@@ -30,21 +30,25 @@ module IdiSms
       http.use_ssl = true
 
       request = Net::HTTP::Post.new(url)
-      request['Content-Type'] = 'application/json'
-      request.body = {
+      request['Content-Type'] = 'application/x-www-form-urlencoded'
+
+      # Create a query string with the form data
+      form_data = URI.encode_www_form(
         sec_key: @secret_key,
         phone_no: phone_no,
         sms_text: sms_text,
         sms_language: sms_language
-      }.to_json
+      )
+
+      request.body = form_data
 
       http.request(request)
     end
 
     def process_response(response)
       if response.code == '200'
-        response_body = JSON.parse(response.body)
-        response_body['status'] == 'success' ? 'SMS sent successfully.' : "Error: #{response_body['message']}"
+        response_body = response.body
+        response_body == 'success' ? 'SMS sent successfully.' : "Error: #{response_body}"
       else
         'Failed to send SMS.'
       end
