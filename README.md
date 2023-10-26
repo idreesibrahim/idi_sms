@@ -23,7 +23,7 @@ Run bundle install to install the gem and its dependencies.
 it will create a file on config/idi_sms.yml
 
 3. Set your api_url and secret_key as per your envionrment
-      1. api_url: https://gatewayurl.sms
+      1. api_url: your_sender_url
       2. secret_key: your_secret_key
 ## Usage
 
